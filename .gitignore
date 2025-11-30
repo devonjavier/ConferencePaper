@@ -1,0 +1,36 @@
+# LaTeX compilation output
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.gz
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+
+# PDF output
+*.pdf
+
+# Latexmk
+latexmkrc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS
+.DS_Store
+Thumbs.db
