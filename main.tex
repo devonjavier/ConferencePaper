@@ -1,34 +1,312 @@
-\input{preamble}
+%%
+%% This is file `socius_conference_paper.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% acmart.dtx  (with options: `sigconf`)
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-sigconf.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file acmart.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not be in the same
+%% directory.)
+%%
+%%
+%% Commands for TeXCount
+%TC:macro \cite [option:text,text]
+%TC:macro \citep [option:text,text]
+%TC:macro \citet [option:text,text]
+%TC:envir table 0 1
+%TC:envir table* 0 1
+%TC:envir tabular [ignore] word
+%TC:envir displaymath 0 word
+%TC:envir math 0 word
+%TC:envir comment 0 0
+%%
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigconf]{acmart}
 
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with the values provided to you when you
+%% complete the rights form.
+\setcopyright{acmcopyright}
+\copyrightyear{2025}
+\acmYear{2025}
+\acmDOI{XXXXXXX.XXXXXXX}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+\acmConference[Conference Name '25]{Make sure to enter the correct conference title from your rights confirmation email}{August 06--08, 2025}{Manila, Philippines}
+\acmBooktitle{Make sure to enter the correct conference title from your rights confirmation email, August 06--08, 2025, Manila, Philippines}
+\acmPrice{15.00}
+\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
 \begin{document}
 
-\maketitle
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Socius: A Dual-Agent Conversational System for Pragmatic Competence Training Grounded in Developmental and Cultural Frameworks}
 
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Aldwin Renzel P. Dimaculangan}
+\email{aldwin_dimaculangan@dlsu.edu.ph}
+\affiliation{%
+  \institution{De La Salle University}
+  \streetaddress{2401 Taft Avenue}
+  \city{Manila}
+  \country{Philippines}
+}
+
+\author{Miguel Alfonso D. Guerrero}
+\email{miguel_guerrero@dlsu.edu.ph}
+\affiliation{%
+  \institution{De La Salle University}
+  \streetaddress{2401 Taft Avenue}
+  \city{Manila}
+  \country{Philippines}
+}
+
+\author{Devon Jarek Y. Javier}
+\email{devon_javier@dlsu.edu.ph}
+\affiliation{%
+  \institution{De La Salle University}
+  \streetaddress{2401 Taft Avenue}
+  \city{Manila}
+  \country{Philippines}
+}
+
+\author{Luke M. Regalado}
+\email{luke_regalado@dlsu.edu.ph}
+\affiliation{%
+  \institution{De La Salle University}
+  \streetaddress{2401 Taft Avenue}
+  \city{Manila}
+  \country{Philippines}
+}
+
+
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information in the page headers. This command allows the
+%% author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Dimaculangan, et al.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
 \begin{abstract}
-Write your abstract here.
+Young adults often lack safe, reflective environments to practice nuanced social communication, or pragmatic competence. Existing educational chatbots frequently lack the conversational naturalism or deep, culturally-aware evaluation frameworks necessary for effective training. This paper presents Socius, a novel chatbot for pragmatic competence training built on the AI Partner-AI Mentor (APAM) framework. Socius leverages a full Google Gemini architecture, utilizing a fast model for immersive roleplaying and a powerful model for deep analysis. A key innovation is our system's multi-pillar theoretical foundation, which grounds practice scenarios in a synthesis of Grice's Maxims, Havighurst's developmental tasks, Arnett's theory of emerging adulthood, and Filipino cultural values. We introduce a detailed, multi-level scoring framework that provides quantitative metrics on user performance across three core pragmatic domains. Preliminary findings detail the successful implementation of this architecture and report on a crucial experiment where fine-tuning a smaller LLM on the specialized GRICE dataset yielded pedagogically poor feedback. This result validated our successful pivot to a prompt-engineering approach with a more capable base model. This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training and offers preliminary insights into the trade-offs between fine-tuning and prompt-engineering for nuanced feedback generation.
 \end{abstract}
 
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+   <concept>
+       <concept_id>10003120.10003121.10003124.10010866</concept_id>
+       <concept_desc>Human-centered computing~HCI theory, concepts and models</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10010405.10010489.10010490</concept_id>
+       <concept_desc>Applied computing~Computer-assisted instruction</concept_desc>
+       <concept_significance>500</concept_significance>
+       </concept>
+   <concept>
+       <concept_id>10003120.10003121.10003126</concept_id>
+       <concept_desc>Human-centered computing~HCI theory, concepts and models</concept_desc>
+       <concept_significance>300</concept_significance>
+       </concept>
+ </ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Human-centered computing~HCI theory, concepts and models}
+\ccsdesc[500]{Applied computing~Computer-assisted instruction}
+\ccsdesc[300]{Human-centered computing~HCI theory, concepts and models}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{pragmatic competence, conversational AI, educational technology, dual-agent framework, Gemini API, Filipino cultural context}
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+
 \section{Introduction}
-Write your introduction here.
+The ability to navigate complex social interactions, often termed pragmatic competence, involves understanding what is implied rather than what is explicitly stated \cite{Zheng2021GRICE}. This skill is particularly challenging for young adults (aged 15-24) who are concurrently navigating new academic, professional, and social environments. In the Philippine context, this challenge is amplified by a high-context communication culture, where values such as \textit{pakikisama} (harmony), \textit{hiya} (shame/propriety), and \textit{utang na loob} (debt of gratitude) profoundly shape conversational norms \cite{Garcia2013}. Despite the clear need, there is a scarcity of accessible, judgment-free tools for practicing these vital skills.
 
-\section{Methodology}
-Write your methodology here.
+To address this gap, we adopt the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which proposes a dual-agent structure: one AI for safe, realistic practice (the Partner) and another for expert, reflective feedback (the Mentor). This paper details the design and preliminary findings of Socius, a significant evolution of a previous concept \cite{Chen2022} that has been re-architected to leverage the advanced capabilities of the Google Gemini family of large language models (LLMs).
 
-\section{Results}
-Write your results here.
+This paper offers several key contributions:
+\begin{enumerate}
+    \item The design and implementation of a \textbf{dual-agent architecture} using Google Gemini for both naturalistic roleplay and deep pragmatic analysis.
+    \item A \textbf{novel theoretical framework for scenario generation} that synthesizes linguistic theory (Grice), developmental psychology (Havighurst, Arnett), and Filipino cultural values (Garcia).
+    \item The development of a \textbf{multi-level, quantitative scoring rubric} for pragmatic competence that provides detailed, actionable metrics.
+    \item \textbf{Preliminary findings} on the limitations of fine-tuning smaller models on narrow datasets for generating nuanced pedagogical feedback, validating our architectural pivot.
+\end{enumerate}
+
+\section{Related Work}
+The use of chatbots for social and emotional support is well-documented, with systems like Woebot and Amy targeting therapeutic needs \cite{Fitzpatrick2017,Gagan2023}. Others, like Kulturo, focus on language learning within a cultural context \cite{Aspecto2025}. Our work is situated within this landscape but is specifically focused on non-therapeutic pragmatic skill training for a general young adult audience. 
+
+The conceptual foundation for Socius is the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which provides a pedagogical structure for social skill training with LLMs. Our research presents a concrete and extended implementation of this framework. A key distinction of our current work is its departure from earlier rule-based systems, including the predecessor to this project, `SociusBot` \cite{Chen2022}. That system, while effective, was limited to multiple-choice inputs and lacked the conversational naturalism that modern LLMs provide. The current version of Socius bridges this gap by offering free-text, dynamic interaction.
+
+The primary research gap we address is the lack of systems that integrate deep theoretical grounding from developmental psychology and cultural studies directly into a quantitative, automated evaluation framework.
+
+\section{The Socius System: Architecture and Methodology}
+Socius is implemented as a full-stack application with a Python Flask backend, a Supabase database, and a web-based frontend. The core innovation lies in its dual-agent Gemini architecture and its theoretically-grounded methodology.
+
+\subsection{System Architecture}
+The system employs two distinct Gemini models to fulfill the roles of the APAM framework:
+\begin{itemize}
+    \item \textbf{AI Partner:} This role is handled by a fast and efficient model, \texttt{gemini-flash-latest}. Its primary function is to engage the user in a responsive, real-time roleplaying conversation based on a selected scenario. Its performance is optimized for low latency to maintain conversational flow.
+    \item \textbf{AI Mentor:} This role is fulfilled by a powerful, state-of-the-art model, \texttt{gemini-2.5-pro}. After a conversation ends, this model receives the full transcript and is tasked with the complex reasoning required for scoring the user's performance and generating structured, pedagogical feedback.
+\end{itemize}
+The backend manages session state, user profiles (\texttt{user\_profiles.csv}), and conversation logs (\texttt{conversations\_logs.csv}), which are crucial for tracking progress and enabling the holistic mentor functionality.
+
+\subsection{Theoretically-Grounded Scenario Generation}
+Each scenario in our database is constructed upon a multi-pillar foundation to ensure it is both realistic and pedagogically sound. A single scenario is a synthesis of:
+\begin{enumerate}
+    \item \textbf{Linguistic Challenge:} A core pragmatic task based on Grice's Maxims, such as identifying a conversational implicature or navigating a maxim violation \cite{Grice1975}.
+    \item \textbf{Developmental Task:} A life challenge relevant to emerging adulthood (ages 18-29) \cite{Arnett2000}, such as negotiating autonomy with parents or managing professional relationships, guided by Havighurst's developmental tasks \cite{Havighurst1972}.
+    \item \textbf{Filipino Cultural Context:} The integration of key Filipino cultural values like \textit{utang na loob} or \textit{paggalang} which add a layer of social complexity to the interaction, based on the work of Garcia (2013) \cite{Garcia2013}.
+\end{enumerate}
+
+\subsection{Pragmatic Competence Scoring Framework}
+The cornerstone of our evaluation is a detailed, quantitative scoring framework. After each session, the AI Mentor is prompted to analyze the transcript and return a structured JSON object. This rubric assesses performance across three main categories:
+\begin{itemize}
+    \item \textbf{Intention Coherence:} Evaluates the appropriateness of speech acts and the clarity of discourse relations.
+    \item \textbf{Social \& Affective Nuance:} Assesses the user's management of formality, informativeness, and emotional awareness in context.
+    \item \textbf{Communicative Effectiveness:} Measures the clarity of the user's implicatures and their success in achieving the conversational goal of the scenario.
+\end{itemize}
+Each category includes several sub-scores and a textual justification, providing users with a multi-faceted view of their performance.
+
+\subsection{Holistic Mentor Functionality}
+Beyond single-session feedback, Socius includes an advanced "Holistic Mentor" feature. This function retrieves a user's entire performance history from the database, including scores and logs from all past scenarios. This longitudinal data is summarized and provided as context to the AI Mentor, allowing it to identify recurring patterns, track progress over time, and offer high-level strategic advice on the user's overall communication style.
+
+\section{Preliminary Findings}
+\subsection{Implementation Status}
+The core Socius architecture has been successfully implemented. This includes the dual-agent Gemini-powered chatbot, the Flask backend API, user profile and conversation logging to the Supabase database, and the prompt-based generation of scores and feedback according to our JSON rubric.
+
+\subsection{Case Study: The Limits of Fine-Tuning on Small, Specialized Datasets}
+Our initial methodology proposed fine-tuning a smaller, open-source model (Mistral-7B) on the GRICE dataset \cite{Zheng2021GRICE} to create a specialized AI Mentor.
+
+\textbf{Hypothesis:} We hypothesized that fine-tuning would create an expert model adept at identifying Gricean maxim violations and providing targeted feedback.
+
+\textbf{Results:} The fine-tuned model performed poorly in a pedagogical context. Its feedback was overly literal, focusing only on direct maxim violations from the dataset. It lacked a supportive, encouraging tone and struggled to handle the natural messiness and complexity of real conversation that fell outside the dataset's narrow scope. The responses were often "direct and bad," failing to provide constructive guidance.
+
+\textbf{Analysis:} We conclude that the GRICE dataset, while invaluable for its intended task of implicature recovery, is too small and specialized for training a general-purpose communication coach. The model overfitted to the dataset's structure, resulting in a brittle and unhelpful feedback generator.
+
+\subsection{The Viability of a Prompt-Engineered Approach}
+Following the fine-tuning experiment, we pivoted our strategy to prompt engineering with a powerful, generalist foundation model (Gemini 2.5 Pro). Initial tests of this new approach have been highly successful. By providing the model with the conversation transcript, the detailed scoring rubric, and a carefully constructed meta-prompt instructing it to act as an encouraging, insightful coach, the AI Mentor now generates feedback that is significantly superior. The feedback is nuanced, contextually relevant, supportive in tone, and accurately populates the structured JSON scoring object.
+
+\section{Future Work and Remaining Tasks}
+Our primary focus moving forward is the user validation phase of the project. We plan to recruit approximately 20 participants within our target demographic of 15-24 years old. Our methodology will involve a pre-assessment survey to establish a baseline, a three-week period of interaction with the Socius chatbot, and post-interaction surveys and interviews to gather both quantitative and qualitative data.
+
+The data analysis will focus on two areas: quantitatively measuring any changes in pragmatic scores across multiple sessions, and qualitatively analyzing user feedback to assess the system's usability, engagement, and perceived effectiveness. Insights from this phase will be used to refine the AI Mentor's prompts and the scenarios themselves. This study has undergone a full ethics review to ensure participant data is handled responsibly and all interactions are anonymized for analysis.
 
 \section{Conclusion}
-Write your conclusion here.
+This paper has presented the architecture and methodology of Socius, a dual-agent conversational system designed to train pragmatic competence. We have detailed a novel approach that integrates linguistic theory with developmental psychology and Filipino cultural values to create a robust and contextually relevant learning experience. Our key preliminary finding highlights a critical insight for the development of educational AI: for complex, pedagogical tasks like providing communication feedback, the advanced reasoning capabilities of a large, generalist model guided by sophisticated prompt engineering can significantly outperform smaller models fine-tuned on narrow, specialized datasets. Future work will focus on validating this promising system with real users to measure its effectiveness in enhancing real-world social communication skills.
 
-\begin{thebibliography}{99}
-\bibitem{example} Author, A. (Year). Title of work. \textit{Journal Name}.
+%%
+%% The acknowledgments section is defined using the "acks" environment
+%% (and NOT an unnumbered section). This ensures the proper
+%% identification of the section in the article metadata, and the
+%% consistent spelling of the heading.
+\begin{acks}
+The authors would like to thank their adviser, Dr. Ethel Ong, and the panel members, Mr. Edward Tighe and Ms. Jackylyn Beredo, for their invaluable guidance and feedback throughout this research.
+\end{acks}
+
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\begin{thebibliography}{9}
+
+% \bibitem{Arnett2000}
+% Jeffrey Jensen Arnett. 2000. Emerging adulthood: A theory of development from the late teens through the twenties. \textit{American psychologist}, 55, 5 (2000), 469.
+
+% \bibitem{Aspecto2025}
+% D. Aspecto, B. Lu, P. Pacheco, and J. Uytanlet. 2025. KulTuro: Exploring the use of a role-play based storytelling chatbot for Tagalog language education. Undergraduate Thesis, De La Salle University.
+
+% \bibitem{Chen2022}
+% A. C. Chen, D. J. Y. Javier, E. A. Panugayan, L. M. Regalado, and R. R. Resureccion. 2022. Project sociusbot: Development of a human-like interactive chatbot for social communication. Project paper, De La Salle University Integrated School.
+
+% \bibitem{Fitzpatrick2017}
+% K. K. Fitzpatrick, A. Darcy, and M. Vierhile. 2017. Delivering cognitive behavior therapy to young adults with symptoms of depression and anxiety using a fully automated conversational agent (woebot): A randomized controlled trial. \textit{JMIR Mental Health}, 4, 2 (2017), e19.
+
+% \bibitem{Gagan2023}
+% I. T. Gagan, M. A. M. Matias, I. Tan, C. M. Vinco, and E. Ong. 2023. Preparing Children with Level 1 ASD for Social Interactions through Storytelling with Amy: An Exploratory Study. In \textit{Extended Abstracts of the 2023 CHI Conference on Human Factors in Computing Systems}. 1--7.
+
+% \bibitem{Garcia2013}
+% F. C. N. Garcia. 2013. A study on the communication styles of Filipino young adults. \textit{Journal of Arts and Humanities}, 2, 6 (2013), 25-33.
+
+% \bibitem{Grice1975}
+% H. P. Grice. 1975. Logic and conversation. In \textit{Syntax and semantics, 3: Speech acts}, P. Cole and J. Morgan (Eds.). Academic Press, 41--58.
+
+% \bibitem{Havighurst1972}
+% Robert J. Havighurst. 1972. \textit{Developmental tasks and education}. David McKay Co.
+
+% \bibitem{Yang2024}
+% D. Yang, C. Ziems, W. Held, O. Shaikh, M. S. Bernstein, and J. Mitchell. 2024. Social Skill Training with Large Language Models. \textit{arXiv preprint arXiv:2404.04204}.
+
+% \bibitem{Zheng2021GRICE}
+% Z. Zheng, S. Qiu, L. Fan, Y. Zhu, and S.-C. Zhu. 2021. GRICE: A Grammar-based Dataset for Recovering Implicature and Conversational Reasoning. In \textit{Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021}. 2074--2085.
+
 \end{thebibliography}
 
 \end{document}
-Write your conclusion here.
-
-\begin{thebibliography}{99}
-\bibitem{example} Author, A. (Year). Title of work. \textit{Journal Name}.
-\end{thebibliography}
-
-\end{document}
+\endinput
+%%
+%% End of file `socius_conference_paper.tex'.
