@@ -1,5 +1,5 @@
 %%
-%% This is file `socius_conference_paper_v4.tex',
+%% This is file `socius_conference_paper_v5.tex',
 %%
 \documentclass[sigconf]{acmart}
 
@@ -72,7 +72,7 @@
 
 
 \begin{abstract}
-Young adults often lack safe, reflective environments to practice nuanced social communication, or pragmatic competence. Existing educational chatbots frequently lack the conversational naturalism or deep, culturally-aware evaluation frameworks necessary for effective training. This paper presents Socius, a chatbot for pragmatic competence training built on the AI Partner-AI Mentor (APAM) framework. Socius leverages a full Google Gemini architecture, utilizing a fast model for immersive roleplaying and a powerful model for deep analysis. A notable feature is our system's multi-pillar theoretical foundation, which grounds practice scenarios in a synthesis of Grice's Maxims, Havighurst's developmental tasks, Arnett's theory of emerging adulthood, and Filipino cultural values. We introduce a detailed, multi-level scoring framework that provides quantitative metrics on user performance across three core pragmatic domains. Preliminary findings detail the successful implementation of this architecture and report on a crucial experiment where fine-tuning a smaller LLM on the specialized GRICE dataset yielded pedagogically poor feedback. This result validated our successful pivot to a prompt-engineering approach with a more capable base model. This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training and offers preliminary insights into the trade-offs between fine-tuning and prompt-engineering for nuanced feedback generation.
+Young adults often lack safe, reflective environments to practice nuanced social communication, or pragmatic competence. Existing educational chatbots frequently lack the conversational naturalism or deep, culturally-aware evaluation frameworks necessary for effective training. This paper presents Socius, a chatbot for pragmatic competence training built on the AI Partner-AI Mentor (APAM) framework. Socius leverages a full Google Gemini architecture, utilizing a fast model for immersive roleplaying and a powerful model for deep analysis. A notable feature is our system's multi-pillar theoretical foundation, which grounds practice scenarios in a synthesis of Grice's Maxims, Havighurst's developmental tasks, Arnett's theory of emerging adulthood, and Filipino cultural values. We introduce a detailed, multi-level scoring framework that provides quantitative metrics on user performance across seven specific criteria. Preliminary findings detail the successful implementation of this architecture and report on a crucial experiment where fine-tuning a smaller LLM on the specialized GRICE dataset yielded pedagogically poor feedback. This result validated our successful pivot to a prompt-engineering approach with a more capable base model. This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training.
 \end{abstract}
 
 \begin{CCSXML}
@@ -134,14 +134,6 @@ Simultaneously, deploying AI in this domain requires ethical consideration. LLMs
 Socius is implemented as a full-stack application with a Python Flask backend, a Supabase database, and a web-based frontend. The core innovation lies in its dual-agent Gemini architecture and its theoretically-grounded methodology.
 
 \subsection{System Architecture}
-% FIGURE 1: System Architecture Diagram
-\begin{figure}[H]
-\centering
-\includegraphics[width=1.00\columnwidth]{figures/[Socius] Architecture.png}
-\caption{\small\textit{Socius System Architecture: Dual-Agent Design with AI Partner and AI Mentor}}
-\label{fig:architecture}
-\end{figure}
-
 Based on our review of current LLMs, the Gemini family was selected for its strong performance in contextual reasoning and its architectural flexibility. The system employs two distinct models to fulfill the roles of the APAM framework:
 \begin{itemize}
     \item \textbf{AI Partner:} Handled by a fast model, \texttt{gemini-flash-latest}, to engage the user in responsive, real-time roleplaying.
@@ -165,13 +157,39 @@ Grice's framework provides the \textbf{linguistic challenge} and the mechanism f
 Filipino values provide the \textbf{socio-cultural constraints}, creating the high-context environment that makes pragmatic competence difficult. Following Garcia's analysis \cite{Garcia2013}, we embed values such as \textit{pakikisama} (concession to maintain group harmony), \textit{hiya} (sense of propriety), and \textit{utang na loob} (debt of gratitude). These values often conflict with western ideals of directness (Gricean clarity), creating the central tension the user must resolve.
 
 \subsubsection{Synthesizing Developmental Themes}
-The synthesis of these pillars produces four distinct, recurring themes that structure our scenario database:
-\begin{enumerate}
-    \item \textbf{Identity vs. Expectation:} The collision between a user's emerging self (Arnett) and the life path prescribed by family (Havighurst), testing the balance between Authenticity and Obligation.
-    \item \textbf{Autonomy vs. Dependence:} The frustration of being "in-between" (Arnett), where the user seeks adult responsibilities but is treated as a child, highlighting the tension between Independence and Hierarchy.
-    \item \textbf{Ambiguity vs. Definition:} Exploring the instability of relationships (Arnett), forcing the user to balance Clarity (Grice) against the Fear of Loss (Pakikisama).
-    \item \textbf{Group vs. Self:} The conflict between forming personal values (Havighurst) and peer group norms, testing the user's ability to maintain Personal Integrity within Group Harmony.
-\end{enumerate}
+The synthesis of these pillars produces four distinct, recurring themes that structure our scenario database. Each theme has a defined conflict, formula, and goal.
+
+\paragraph{Theme 1: Identity vs. Expectation Conflict}
+This theme is built on the collision between a young adult's emerging sense of self (Arnett) and the life path prescribed for them by family or society (Havighurst).
+\begin{itemize}
+    \item \textbf{Conflict:} The user's personal desire, belief, or identity clashes with an external expectation from an authority figure. This represents the tension between \textit{Authenticity} and \textit{Obligation} (Utang na Loob/Paggalang).
+    \item \textbf{Formula:} 1) The user is developing a personal goal, value, or identity. 2) An authority figure expresses a conflicting expectation or disappointment. 3) The situation forces the user to defend or conceal their choice.
+    \item \textbf{Goal:} The user must practice validating the authority's perspective and expressing gratitude, while simultaneously and respectfully asserting their own identity and decisions.
+\end{itemize}
+
+\paragraph{Theme 2: Autonomy vs. Dependence Conflict}
+This theme explores the frustration of being "in-between" (Arnett), where the user seeks adult responsibilities (Havighurst) but is still treated like a child.
+\begin{itemize}
+    \item \textbf{Conflict:} The user's attempt to exercise adult autonomy is challenged by a figure who still views them as dependent. This represents the tension between \textit{Independence} and \textit{Hierarchy}.
+    \item \textbf{Formula:} 1) The user makes an adult decision (e.g., financial, travel). 2) A guardian discovers this and questions or overrules the decision. 3) The situation requires the user to justify their competence without being childishly defiant.
+    \item \textbf{Goal:} The user must practice shifting the conversation from "obedience" to "responsibility," explaining their reasoning to demonstrate competence and reevaluate the relationship as adult-to-adult.
+\end{itemize}
+
+\paragraph{Theme 3: Ambiguity vs. Definition Conflict}
+This theme explores the instability of relationships (Arnett) while trying to achieve stable partnerships (Havighurst).
+\begin{itemize}
+    \item \textbf{Conflict:} A relationship exists in an undefined "gray area," and a situation arises that forces the need for clarity. This represents the tension between \textit{Clarity} (Grice) and \textit{Fear of Loss} (Risking Pakikisama).
+    \item \textbf{Formula:} 1) The user is in an ambiguous relationship (e.g., "talking stage"). 2) A trigger event occurs (e.g., jealousy, holiday). 3) The situation forces a "Define the Relationship" (DTR) conversation.
+    \item \textbf{Goal:} The user must practice expressing their own feelings and needs with honesty (Quality) and kindness (Manner), while creating a safe space for the other person to be honest.
+\end{itemize}
+
+\paragraph{Theme 4: Group vs. Self Conflict}
+This theme centers on forming a personal value system (Havighurst) when it conflicts with the established norms of a peer group (Arnett's Identity Exploration).
+\begin{itemize}
+    \item \textbf{Conflict:} The user's personal values are violated by the actions or words of their friends. This represents the tension between \textit{Group Harmony} (Pakikisama) and \textit{Personal Integrity} (Kapwa/Hiya).
+    \item \textbf{Formula:} 1) The peer group does something unethical or wrong. 2) Silence implies agreement. 3) The situation forces the user to choose between staying silent or intervening.
+    \item \textbf{Goal:} The user must practice intervening in a way that minimizes defensiveness. They learn to redirect the conversation or state their own feelings to de-escalate the conflict.
+\end{itemize}
 
 \subsection{Pragmatic Competence Scoring Framework}
 The cornerstone of our evaluation is a detailed, quantitative scoring framework. After each session, the AI Mentor is prompted to analyze the transcript and return a structured JSON object. This rubric assesses performance across three main categories, comprised of seven specific criteria:
