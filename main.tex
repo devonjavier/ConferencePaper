@@ -105,17 +105,17 @@ Young adults often lack safe, reflective environments to practice nuanced social
 \maketitle
 
 \section{Introduction}
-The ability to navigate complex social interactions, often termed pragmatic competence, involves understanding what is implied rather than what is explicitly stated \cite{Zheng2021GRICE}. This skill is particularly challenging for young adults (aged 15-24) who are concurrently navigating new academic, professional, and social environments. In the Philippine context, this challenge is amplified by a high-context communication culture, where values such as \textit{pakikisama} (harmony), \textit{hiya} (shame/propriety), and \textit{utang na loob} (debt of gratitude) profoundly shape conversational norms \cite{Garcia2013}. Despite the clear need, there is a scarcity of accessible, judgment-free tools for practicing these skills.
+TPragmatic competence involves figuring out a statement’s implicit meaning, rather than explicit \cite{Zheng2021GRICE}. This skill is important in social communication, but it is a particularly challenging skill for young adults (aged 15-24) to master especially in social, academic, and professional settings. In the Philippine context, pragmatic competence is even more needed due to context being a vital part of communication culture, where values such as \textit{Pakikisama}, \textit{Hiya}, \textit{Utang na Loob}, \textit{Kapwa}, and \textit{Paggalang} shape conversational norms and is a contributing factor in how people structure their speech \cite{Garcia2013}. Despite having a need to improve on pragmatic competence, there is a lack of an accessible, judgment-free space to practice and refine this social skill.
 
-To address this gap, we adopt the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which proposes a dual-agent structure: one AI for safe, realistic practice (the Partner) and another for expert, reflective feedback (the Mentor). This paper details the design and preliminary findings of Socius, a significant evolution of a previous concept \cite{Chen2022} that has been re-architected to leverage the advanced capabilities of the Google Gemini family of large language models (LLMs).
+To address this gap, a chatbot was developed that makes use of the Gemini large language model, paired with the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which proposes a dual-agent structure: one that practices alongside the user (AI Partner) and one that provides personalized feedback based on performance with the Partner (AI Mentor). This paper details the design and preliminary findings of the developed chatbot.
 
-This paper offers several key contributions:
+This paper offers the following contributions:
 \begin{enumerate}
-    \item The design and implementation of a \textbf{dual-agent architecture} using Google Gemini for both naturalistic roleplay and deep pragmatic analysis.
-    \item A \textbf{novel theoretical framework for scenario generation} that synthesizes linguistic theory (Grice), developmental psychology (Havighurst, Arnett), and Filipino cultural values (Garcia).
+    \item The design and implementation of a \textbf{dual-agent architecture} using Google Gemini for a natural roleplay experience, deep pragmatic analysis, and personalized feedback provision.
+    \item A \textbf{theoretical framework for scenario generation} that synthesizes linguistic theory (Grice), developmental psychology (Havighurst, Arnett), and Filipino cultural values (Garcia).
     \item The development of a \textbf{multi-level, quantitative scoring rubric} for pragmatic competence that provides detailed, actionable metrics.
-    \item \textbf{Preliminary findings} on the limitations of fine-tuning smaller models on narrow datasets for generating nuanced pedagogical feedback, validating our architectural pivot.
-    \item This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training.
+    \item \textbf{Preliminary findings} on the limitations of fine-tuning smaller models on narrow datasets for generating nuanced pedagogical feedback, validating architectural pivot.
+    \item The architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training.
 \end{enumerate}
 
 \section{Related Work}
