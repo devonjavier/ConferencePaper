@@ -1,5 +1,5 @@
 %%
-%% This is file `socius_conference_paper_v5.tex',
+%% This is file `socius_conference_paper_merged.tex',
 %%
 \documentclass[sigconf]{acmart}
 
@@ -72,7 +72,7 @@
 
 
 \begin{abstract}
-Young adults often lack safe, reflective environments to practice nuanced social communication, or pragmatic competence. Existing educational chatbots frequently lack the conversational naturalism or deep, culturally-aware evaluation frameworks necessary for effective training. This paper presents Socius, a chatbot for pragmatic competence training built on the AI Partner-AI Mentor (APAM) framework. Socius leverages a full Google Gemini architecture, utilizing a fast model for immersive roleplaying and a powerful model for deep analysis. A notable feature is our system's multi-pillar theoretical foundation, which grounds practice scenarios in a synthesis of Grice's Maxims, Havighurst's developmental tasks, Arnett's theory of emerging adulthood, and Filipino cultural values. We introduce a detailed, multi-level scoring framework that provides quantitative metrics on user performance across seven specific criteria. Preliminary findings detail the successful implementation of this architecture and report on a crucial experiment where fine-tuning a smaller LLM on the specialized GRICE dataset yielded pedagogically poor feedback. This result validated our successful pivot to a prompt-engineering approach with a more capable base model. This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training.
+Young adults often lack safe, reflective environments to practice nuanced social communication, or pragmatic competence. Existing educational chatbots frequently lack the conversational naturalism or deep, culturally-aware evaluation frameworks necessary for effective training. This paper presents Socius, a chatbot for pragmatic competence training built on the AI Partner-AI Mentor (APAM) framework. Socius leverages a full Google Gemini architecture, utilizing a fast model for immersive roleplaying and a powerful model for deep analysis. A notable feature is our system's multi-pillar theoretical foundation, which grounds practice scenarios in a synthesis of Grice's Maxims, Havighurst's developmental tasks, Arnett's theory of emerging adulthood, and Filipino cultural values. We introduce a detailed, multi-level scoring framework that provides quantitative metrics on user performance across three core pragmatic domains. Preliminary findings detail the successful implementation of this architecture and report on a crucial experiment where fine-tuning a smaller LLM on the specialized GRICE dataset yielded pedagogically poor feedback. This result validated our successful pivot to a prompt-engineering approach with a more capable base model. This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training and offers preliminary insights into the trade-offs between fine-tuning and prompt-engineering for nuanced feedback generation.
 \end{abstract}
 
 \begin{CCSXML}
@@ -100,14 +100,15 @@ Young adults often lack safe, reflective environments to practice nuanced social
 \section{Introduction}
 The ability to navigate complex social interactions, often termed pragmatic competence, involves understanding what is implied rather than what is explicitly stated \cite{Zheng2021GRICE}. This skill is particularly challenging for young adults (aged 15-24) who are concurrently navigating new academic, professional, and social environments. In the Philippine context, this challenge is amplified by a high-context communication culture, where values such as \textit{pakikisama} (harmony), \textit{hiya} (shame/propriety), and \textit{utang na loob} (debt of gratitude) profoundly shape conversational norms \cite{Garcia2013}. Despite the clear need, there is a scarcity of accessible, judgment-free tools for practicing these skills.
 
-To address this gap, we adopt the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which proposes a dual-agent structure: one AI for safe, realistic practice (the Partner) and another for expert, reflective feedback (the Mentor). This paper details the design and preliminary findings of Socius, an evolution of a previous concept \cite{Chen2022} that has been re-architected to leverage the advanced capabilities of the Google Gemini family of large language models (LLMs).
+To address this gap, we adopt the AI Partner-AI Mentor (APAM) framework \cite{Yang2024}, which proposes a dual-agent structure: one AI for safe, realistic practice (the Partner) and another for expert, reflective feedback (the Mentor). This paper details the design and preliminary findings of Socius, a significant evolution of a previous concept \cite{Chen2022} that has been re-architected to leverage the advanced capabilities of the Google Gemini family of large language models (LLMs).
 
 This paper offers several key contributions:
 \begin{enumerate}
     \item The design and implementation of a \textbf{dual-agent architecture} using Google Gemini for both naturalistic roleplay and deep pragmatic analysis.
-    \item A \textbf{theoretical framework for scenario generation} that synthesizes linguistic theory (Grice), developmental psychology (Havighurst, Arnett), and Filipino cultural values (Garcia).
+    \item A \textbf{novel theoretical framework for scenario generation} that synthesizes linguistic theory (Grice), developmental psychology (Havighurst, Arnett), and Filipino cultural values (Garcia).
     \item The development of a \textbf{multi-level, quantitative scoring rubric} for pragmatic competence that provides detailed, actionable metrics.
-    \item \textbf{Preliminary findings} on the limitations of fine-tuning smaller models on narrow datasets for generating nuanced pedagogical feedback, influencing our architectural pivot.
+    \item \textbf{Preliminary findings} on the limitations of fine-tuning smaller models on narrow datasets for generating nuanced pedagogical feedback, validating our architectural pivot.
+    \item This paper contributes the architecture and methodology of a theoretically robust, culturally-contextualized system for social skill training.
 \end{enumerate}
 
 \section{Related Work}
@@ -118,46 +119,83 @@ The use of technology for social skills training has expanded from traditional c
 
 Therapeutic chatbots like Woebot leverage Cognitive Behavioral Therapy (CBT) to provide mental health support \cite{Fitzpatrick2017}, while systems like Amy use social stories to assist children with Autism Spectrum Disorder (ASD) \cite{Gagan2023}. In contrast, skill-training chatbots focus on improving conversational ability. For instance, Kulturo uses gamified, story-driven roleplay to teach Tagalog within a cultural context \cite{Aspecto2025}. 
 
-A key differentiator in chatbot design is the interaction modality. The predecessor to this project, `SociusBot` \cite{Chen2022}, demonstrated the potential of a rule-based system for teens but was limited to multiple-choice inputs, which users found "robotic." This highlights a critical gap: the need for a system that combines the pedagogical structure of earlier designs with the conversational naturalism of modern LLMs, which systems like Kulturo have begun to explore. Socius is designed to fill this gap by offering free-text, dynamic interaction grounded in a theoretical framework.
+A key differentiator in chatbot design is the interaction modality. The predecessor to this project, `SociusBot` \cite{Chen2022}, demonstrated the potential of a rule-based system for teens but was limited to multiple-choice inputs, which users found "robotic." This highlights a critical gap: the need for a system that combines the pedagogical structure of earlier designs with the conversational naturalism of modern LLMs, which systems like Kulturo have begun to explore. Socius is designed to fill this gap by offering free-text, dynamic interaction grounded in a robust theoretical framework.
 
 \subsection{Comparison of Large Language Models for Conversational AI}
 The choice of the underlying LLM is a critical architectural decision that dictates a chatbot's capabilities. OpenAI's GPT series, particularly GPT-4, has set a high benchmark for pragmatic reasoning, in some cases outperforming humans on tasks involving implicature detection \cite{Bojic2023}. These models have proven effective as flexible conversational agents adaptable to various roles \cite{Lee2024}.
 
-However, the LLM landscape is diverse, and other models present alternatives. Google's Gemini family of models has demonstrated strong performance, particularly in tasks requiring nuanced contextual understanding and sustained conversational coherence. A notable example is the ELEVATE virtual companion, a Gemini-powered mental health support tool for students, which showed iterative differences in contextual understanding and empathetic engagement over five development cycles \cite{Angeline2024}. This demonstrated effectiveness in a supportive, educational context, combined with the architectural flexibility of using both fast (Gemini Flash) and powerful (Gemini Pro) models, made the Gemini API a viable and strategic choice as the foundational LLM for the Socius system's dual-agent architecture.
+However, the LLM landscape is diverse, and other models present compelling alternatives. Google's Gemini family of models has demonstrated strong performance, particularly in tasks requiring nuanced contextual understanding and sustained conversational coherence. A notable example is the ELEVATE virtual companion, a Gemini-powered mental health support tool for students, which showed significant iterative improvement in contextual understanding and empathetic engagement over five development cycles \cite{Angeline2024}. This demonstrated effectiveness in a supportive, educational context, combined with the architectural flexibility of using both fast (Gemini Flash) and powerful (Gemini Pro) models, made the Gemini API a viable and strategic choice as the foundational LLM for the Socius system's dual-agent architecture.
 
 \subsection{Theoretical and Ethical Foundations}
 Effective tool design must be grounded in both theory and ethical practice. Foundational studies in social communication highlight the period of young adulthood as a critical developmental stage for honing empathetic and functional communication skills, justifying our target demographic \cite{Guclu2016}. Research into social awkwardness provides a framework for recognizing and responding to conversational miscues, which is essential for the AI Mentor's feedback mechanism \cite{Clegg2012}.
 
-Simultaneously, deploying AI in this domain requires ethical consideration. LLMs can inherit and perpetuate biases from their training data, and the sensitive nature of user conversations necessitates privacy and data security measures \cite{Zhou2024}. Our methodology, which includes a formal ethics review and data anonymization, is designed to mitigate these risks and ensure the responsible development and deployment of Socius.
+Simultaneously, deploying AI in this domain requires careful ethical consideration. LLMs can inherit and perpetuate biases from their training data, and the sensitive nature of user conversations necessitates robust privacy and data security measures \cite{Zhou2024}. Our methodology, which includes a formal ethics review and data anonymization, is designed to mitigate these risks and ensure the responsible development and deployment of Socius.
 
-\section{The Socius System: Architecture and Methodology}
-Socius is implemented as a full-stack application with a Python Flask backend, a Supabase database, and a web-based frontend. The core innovation lies in its dual-agent Gemini architecture and its theoretically-grounded methodology.
+\section{System Architecture}
+Socius functions as an orchestrated system of distinct AI agents managed by a central backend. The architecture is designed to optimize both the speed of the user's practice session and the depth of the subsequent analysis.
 
-\subsection{System Architecture}
-Based on our review of current LLMs, the Gemini family was selected for its strong performance in contextual reasoning and its architectural flexibility. The system employs two distinct models to fulfill the roles of the APAM framework:
+\subsection{Backend: The Nervous System}
+The backend serves as the central nervous system of the application, orchestrating the user's entire learning loop. It runs on a \textbf{Flask server} exposing RESTful API endpoints that coordinate data flow between the frontend, the database, and the AI agents.
 \begin{itemize}
-    \item \textbf{AI Partner:} Handled by a fast model, \texttt{gemini-flash-latest}, to engage the user in responsive, real-time roleplaying.
-    \item \textbf{AI Mentor:} Handled by a powerful model, \texttt{gemini-2.5-pro}, for the complex reasoning required for scoring and feedback generation.
+    \item \textbf{Session Management:} The server manages user sessions, ensuring isolation between different users and conversational contexts.
+    \item \textbf{Data Persistence:} Through the \texttt{profile} module, the backend handles all database operations with Supabase. It manages CRUD operations for user profiles and conversation logs, ensuring that every interaction contributes to the user's longitudinal growth record.
+    \item \textbf{API Abstraction:} The server abstracts the complexity of the AI integration through four primary endpoints:
+    \begin{enumerate}
+        \item \texttt{/start-session}: Initializes the chatbot instance and loads the selected scenario context.
+        \item \texttt{/send-message}: Routes user input to the AI Partner for roleplay responses.
+        \item \texttt{/end-session}: Triggers the analysis phase, generating feedback and saving data to the database.
+        \item \texttt{/mentor-chat}: Enables the interactive Q\&A session with the AI Mentor.
+    \end{enumerate}
 \end{itemize}
-The backend manages session state, user profiles, and conversation logs, which are crucial for tracking progress and enabling the holistic mentor functionality.
+
+\subsection{Core Logic: AI Orchestration and User Journey}
+The core intelligence involves the orchestration of three distinct AI agents. This design allows us to split the user journey into a "Fast Practice" phase and a "Deep Analysis" phase.
+
+\subsubsection{Agent 1: AI Partner (Roleplay Engine)}
+This agent functions as the real-time conversational partner. It is powered by \textbf{\texttt{gemini-2.5-flash}} to prioritize cost-effectiveness and high-frequency interaction speed.
+\begin{itemize}
+    \item \textbf{Workflow:} It receives the user message and conversation history. It constructs a prompt with the scenario context, character instructions, and previous dialogue.
+    \item \textbf{Output:} It generates and streams a response to the UI, updating the history.
+    \item \textbf{User Journey Connection:} This agent powers the live roleplay phase. The use of the "Flash" model ensures the conversation feels fluid and responsive, mimicking the speed of natural human dialogue to maintain immersion.
+\end{itemize}
+
+\subsubsection{Agent 2: AI Mentor Analyzer (Feedback Generation)}
+This agent is responsible for post-conversation analysis. It is triggered only when the user ends a session and utilizes \textbf{\texttt{gemini-2.5-pro}} for its sophisticated reasoning capabilities.
+\begin{itemize}
+    \item \textbf{Workflow:} It receives the complete conversation transcript. It analyzes multiple dimensions including communication patterns, empathy levels, and scenario-specific goal achievement.
+    \item \textbf{Output:} It generates structured feedback containing quantitative scores and qualitative explanations. Crucially, it primes the subsequent Chat Agent with this generated feedback.
+    \item \textbf{User Journey Connection:} This represents the transition from practice to reflection. The "Pro" model is used here because evaluation is computationally more complex than generation; it must apply abstract theoretical concepts to specific user utterances.
+\end{itemize}
+
+\subsubsection{Agent 3: AI Mentor Chat (Interactive Q\&A)}
+This agent facilitates personalized discussion about the user's performance. Like the Analyzer, it uses \textbf{\texttt{gemini-2.5-pro}}.
+\begin{itemize}
+    \item \textbf{Workflow:} It maintains a separate conversation history from the roleplay. When the user asks a question, the agent responds using the pre-loaded feedback context generated by the Analyzer.
+    \item \textbf{User Journey Connection:} This facilitates the "debriefing" phase. By pre-priming the agent with the analysis, we eliminate the need to resend the full transcript for every follow-up question, significantly reducing token usage while allowing the user to ask clarifying questions about their results.
+\end{itemize}
+
+\section{Methodology and Theoretical Framework}
+Our system is not just a technical implementation but a pedagogical tool grounded in a multi-pillar theoretical framework.
+
+\subsection{Linguistic Contextualization}
+To ensure the system is culturally resonant for Filipino young adults, we implemented a rigorous set of system instructions within our prompt engineering module (`prompts.py`).
+\begin{itemize}
+    \item \textbf{Authentic "Taglish":} The AI is explicitly forbidden from providing English translations in parentheses, a common artifact in generic LLMs.
+    \item \textbf{Conversational Markers:} The prompt enforces the use of Filipino particles such as \textit{naman}, \textit{nga}, \textit{diba}, and \textit{eh} to soften tone or add emphasis, mirroring natural speech rhythms.
+    \item \textbf{Code-Switching for Emotion:} The AI is instructed to switch to Tagalog for words carrying specific emotional weight (e.g., \textit{nakakainis}, \textit{sayang}), reflecting how bilingual Filipinos often revert to their L1 for affective expression.
+\end{itemize}
 
 \subsection{Theoretically-Grounded Scenario Generation}
-Our scenarios are not arbitrary conversational prompts but are systematically constructed from a multi-pillar theoretical foundation. This ensures that every interaction emulated by the chatbot is realistic, culturally resonant, and pedagogically sound. Each scenario is synthesized from the following four pillars:
-
-\subsubsection{1. Arnett's Theory of Emerging Adulthood}
-Arnett provides the \textbf{psychological context} for our system. He posits that the age range of 18-29 is distinct from adolescence and full adulthood, characterized by identity exploration, instability, self-focus, and feeling "in-between" \cite{Arnett2000}. By grounding scenarios in this theory, we ensure the conflicts feel authentic to the user's current lived experience—specifically the anxiety of navigating undefined roles and the pressure to define one's self.
-
-\subsubsection{2. Havighurst's Developmental Tasks}
-Havighurst provides the \textbf{concrete life tasks} or specific social challenges the user must navigate. These include achieving emotional independence from parents, developing new relations with age-mates, and preparing for an economic career \cite{Havighurst1972}. In Socius, these tasks serve as the "plot" of the scenario (e.g., asking for a raise, setting boundaries with a parent), transforming abstract psychological tension into actionable roleplay.
-
-\subsubsection{3. Grice's Cooperative Principle}
-Grice's framework provides the \textbf{linguistic challenge} and the mechanism for evaluation. We specifically utilize his four maxims: \textit{Quantity} (amount of information), \textit{Quality} (truthfulness), \textit{Relation} (relevance), and \textit{Manner} (clarity) \cite{Grice1975}. The scenarios are designed to create situations where adhering to these maxims is difficult (e.g., being truthful vs. being polite), forcing the user to navigate the nuance of conversational implicature.
-
-\subsubsection{4. Filipino Cultural Values}
-Filipino values provide the \textbf{socio-cultural constraints}, creating the high-context environment that makes pragmatic competence difficult. Following Garcia's analysis \cite{Garcia2013}, we embed values such as \textit{pakikisama} (concession to maintain group harmony), \textit{hiya} (sense of propriety), and \textit{utang na loob} (debt of gratitude). These values often conflict with western ideals of directness (Gricean clarity), creating the central tension the user must resolve.
+Each scenario is synthesized from four core pillars to ensure they are realistic and pedagogically sound:
+\begin{enumerate}
+    \item \textbf{Arnett's Theory of Emerging Adulthood:} Provides the psychological context of instability and identity exploration \cite{Arnett2000}.
+    \item \textbf{Havighurst's Developmental Tasks:} Provides the concrete life tasks (e.g., emotional independence, career preparation) \cite{Havighurst1972}.
+    \item \textbf{Grice's Cooperative Principle:} Provides the linguistic challenge via the four maxims (Quantity, Quality, Relation, Manner) \cite{Grice1975}.
+    \item \textbf{Filipino Cultural Values:} Provides the socio-cultural constraints (Pakikisama, Hiya, Utang na Loob) \cite{Garcia2013}.
+\end{enumerate}
 
 \subsubsection{Synthesizing Developmental Themes}
-The synthesis of these pillars produces four distinct, recurring themes that structure our scenario database. Each theme has a defined conflict, formula, and goal.
+The synthesis of Arnett and Havighurst produces four distinct, recurring themes that structure our scenario database. Each theme has a defined conflict, formula, and goal.
 
 \paragraph{Theme 1: Identity vs. Expectation Conflict}
 This theme is built on the collision between a young adult's emerging sense of self (Arnett) and the life path prescribed for them by family or society (Havighurst).
@@ -179,7 +217,7 @@ This theme explores the frustration of being "in-between" (Arnett), where the us
 This theme explores the instability of relationships (Arnett) while trying to achieve stable partnerships (Havighurst).
 \begin{itemize}
     \item \textbf{Conflict:} A relationship exists in an undefined "gray area," and a situation arises that forces the need for clarity. This represents the tension between \textit{Clarity} (Grice) and \textit{Fear of Loss} (Risking Pakikisama).
-    \item \textbf{Formula:} 1) The user is in an ambiguous relationship (e.g., "talking stage"). 2) A trigger event occurs (e.g., jealousy, holiday). 3) The situation forces a "Define the Relationship" (DTR) conversation.
+    \item \textbf{Formula:} 1) The user is in an ambiguous relationship (e.g., ``talking stage''). 2) A trigger event occurs (e.g., jealousy, holiday). 3) The situation forces a ``Define the Relationship'' (DTR) conversation.
     \item \textbf{Goal:} The user must practice expressing their own feelings and needs with honesty (Quality) and kindness (Manner), while creating a safe space for the other person to be honest.
 \end{itemize}
 
@@ -192,7 +230,7 @@ This theme centers on forming a personal value system (Havighurst) when it confl
 \end{itemize}
 
 \subsection{Pragmatic Competence Scoring Framework}
-The cornerstone of our evaluation is a detailed, quantitative scoring framework. After each session, the AI Mentor is prompted to analyze the transcript and return a structured JSON object. This rubric assesses performance across three main categories, comprised of seven specific criteria:
+The evaluation engine utilizes a detailed, quantitative scoring framework. After each session, the AI Mentor analyzes the transcript and returns a structured JSON object assessing seven specific criteria:
 
 \subsubsection{Category 1: Intention Coherence}
 This category measures how well the user's response fits into the logical flow of the conversation.
@@ -217,11 +255,11 @@ This category measures the functional success of the communication.
 \end{itemize}
 
 \subsection{Holistic Mentor Functionality}
-Beyond single-session feedback, Socius includes an advanced "Holistic Mentor" feature. This function retrieves a user's entire performance history from the database, including scores and logs from all past scenarios. This longitudinal data is summarized and provided as context to the AI Mentor, allowing it to identify recurring patterns, track progress over time, and offer high-level strategic advice on the user's overall communication style.
+Beyond single-session feedback, Socius includes an advanced "Holistic Mentor" feature. This function retrieves a user's entire conversation history from the database. Rather than relying on a separate summarization algorithm, we leverage the large context window of \texttt{gemini-2.5-pro} to aggregate the raw logs and score data from all past sessions directly. This allows the Mentor to identify recurring patterns (e.g., "You consistently score low on Formality with authority figures") and track progress over time, offering high-level strategic advice on the user's overall communication trajectory.
 
 \section{Preliminary Findings}
 \subsection{Implementation Status}
-The core Socius architecture has been successfully implemented. This includes the dual-agent Gemini-powered chatbot, the Flask backend API, user profile and conversation logging to the Supabase database, and the prompt-based generation of scores and feedback according to our JSON rubric.
+The core Socius architecture—including the dual-agent Gemini chatbots, Flask backend, and Supabase logging—has been successfully implemented.
 
 \subsection{Case Study: The Limits of Fine-Tuning on Small, Specialized Datasets}
 Our initial methodology proposed fine-tuning a smaller, open-source model (Mistral-7B) on the GRICE dataset \cite{Zheng2021GRICE} to create a specialized AI Mentor.
@@ -233,7 +271,7 @@ Our initial methodology proposed fine-tuning a smaller, open-source model (Mistr
 \textbf{Analysis:} We conclude that the GRICE dataset, while invaluable for its intended task of implicature recovery, is too small and specialized for training a general-purpose communication coach. The model overfitted to the dataset's structure, resulting in a brittle and unhelpful feedback generator.
 
 \subsection{The Viability of a Prompt-Engineered Approach}
-Following the fine-tuning experiment, we pivoted our strategy to prompt engineering with a powerful, generalist foundation model (Gemini 2.5 Pro). Initial tests of this new approach have been highly successful. By providing the model with the conversation transcript, the detailed scoring rubric, and a carefully constructed meta-prompt instructing it to act as an encouraging, insightful coach, the AI Mentor now generates feedback that is aligned closesly to the framework. The feedback is nuanced, contextually relevant, supportive in tone, and accurately populates the structured JSON scoring object.
+Following the fine-tuning experiment, we pivoted our strategy to prompt engineering with a powerful, generalist foundation model (Gemini 2.5 Pro). Initial tests of this new approach have been highly successful. By providing the model with the conversation transcript, the detailed scoring rubric, and a carefully constructed meta-prompt instructing it to act as an encouraging, insightful coach, the AI Mentor now generates feedback that is significantly superior. The feedback is nuanced, contextually relevant, supportive in tone, and accurately populates the structured JSON scoring object.
 
 \section{Future Work and Remaining Tasks}
 Our primary focus moving forward is the user validation phase of the project. We plan to recruit approximately 20 participants within our target demographic of 15-24 years old. Our methodology will involve a pre-assessment survey to establish a baseline, a three-week period of interaction with the Socius chatbot, and post-interaction surveys and interviews to gather both quantitative and qualitative data.
@@ -241,7 +279,7 @@ Our primary focus moving forward is the user validation phase of the project. We
 The data analysis will focus on two areas: quantitatively measuring any changes in pragmatic scores across multiple sessions, and qualitatively analyzing user feedback to assess the system's usability, engagement, and perceived effectiveness. Insights from this phase will be used to refine the AI Mentor's prompts and the scenarios themselves. This study has undergone a full ethics review to ensure participant data is handled responsibly and all interactions are anonymized for analysis.
 
 \section{Conclusion}
-This paper has presented the architecture and methodology of Socius, a dual-agent conversational system designed to train pragmatic competence. We have detailed an approach that integrates linguistic theory with developmental psychology and Filipino cultural values to create a robust and contextually relevant learning experience. Our key preliminary finding highlights a critical insight for the development of educational AI: for complex, pedagogical tasks like providing communication feedback, the advanced reasoning capabilities of a large, generalist model guided by prompt engineering can provide more focused responses and analysis than smaller models fine-tuned on narrow, specialized datasets. Future work will focus on validating this system with real users to measure its effectiveness in enhancing real-world social communication skills.
+This paper has presented the architecture and methodology of Socius, a dual-agent conversational system designed to train pragmatic competence. We have detailed a novel approach that integrates linguistic theory with developmental psychology and Filipino cultural values to create a robust and contextually relevant learning experience. Our key preliminary finding highlights a critical insight for the development of educational AI: for complex, pedagogical tasks like providing communication feedback, the advanced reasoning capabilities of a large, generalist model guided by sophisticated prompt engineering can significantly outperform smaller models fine-tuned on narrow, specialized datasets. Future work will focus on validating this promising system with real users to measure its effectiveness in enhancing real-world social communication skills.
 
 \begin{acks}
 The authors would like to thank their adviser, Dr. Ethel Ong, and the panel members, Mr. Edward Tighe and Ms. Jackylyn Beredo, for their invaluable guidance and feedback throughout this research.
