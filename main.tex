@@ -192,12 +192,17 @@ This agent facilitates personalized discussion about the user's performance. Lik
 \section{Methodology and Theoretical Framework}
 Our system is not just a technical implementation but a pedagogical tool grounded in a multi-pillar theoretical framework.
 
-\subsection{Linguistic Contextualization}
-To ensure the system is culturally resonant for Filipino young adults, we implemented a rigorous set of system instructions within our prompt engineering module (`prompts.py`).
+\subsection{Linguistic Contextualization through Negative Constraints}
+
 \begin{itemize}
-    \item \textbf{Authentic "Taglish":} The AI is explicitly forbidden from providing English translations in parentheses, a common artifact in generic LLMs.
-    \item \textbf{Conversational Markers:} The prompt enforces the use of Filipino particles such as \textit{naman}, \textit{nga}, \textit{diba}, and \textit{eh} to soften tone or add emphasis, mirroring natural speech rhythms.
-    \item \textbf{Code-Switching for Emotion:} The AI is instructed to switch to Tagalog for words carrying specific emotional weight (e.g., \textit{nakakainis}, \textit{sayang}), reflecting how bilingual Filipinos often revert to their L1 for affective expression.
+    \item \textbf{Negative Constraints}
+    To ensure the system is culturally resonant for Filipino young adults, we moved beyond standard prompt engineering to implement rigorous "negative constraints" within the system instructions. Analysis of early prototypes revealed that generic LLMs often "break character" by explaining their code-switching. To counter this, the production system explicitly forbids the AI from providing parenthetical English translations (e.g., "Wala lang (It's nothing)") \cite{Zheng2021GRICE}.
+
+    \item \textbf{Conversational Markers}
+    Furthermore, the prompt enforces the appropriate use of specific Filipino markers. Rather than generic English fillers, the model is instructed to utilize particles such as \textit{naman}, \textit{nga}, \textit{diba}, and \textit{eh} to modulate tone and emphasis.
+
+    \item \textbf{Targeted Code-Switching}
+    Finally, the system is instructed to code-switch specifically for words carrying high emotional weight (e.g., \textit{nakakainis}, \textit{sayang}), mirroring the linguistic phenomenon where bilingual speakers revert to their L1 for affective expression.
 \end{itemize}
 
 \subsection{Theoretically-Grounded Scenario Generation}
