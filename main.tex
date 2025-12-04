@@ -250,21 +250,21 @@ This theme centers on forming a personal value system (Havighurst) when it confl
 \end{itemize}
 
 \subsection{Pragmatic Competence Scoring Framework}
-The evaluation engine utilizes a detailed, quantitative scoring framework. After each session, the AI Mentor analyzes the transcript and returns a structured JSON object assessing seven specific criteria:
+To transform subjective sociolinguistic analysis into measurable data, the evaluation engine utilizes the Controlled Generation capabilities of the Gemini API. Rather than relying on probabilistic text generation, we enforce a strict JSON Output Schema within the model configuration. This constrains the AI Mentor to populate a pre-defined data structure, ensuring that every session yields machine-parsable metrics for longitudinal tracking. The schema requires the model to output both a numerical score (1-5) and a specific textual justification for criteria across three core domains:
 
 \subsubsection{Category 1: Intention Coherence}
-This category measures how well the user's response fits into the logical flow of the conversation.
+This category measures how well the user’s response fits into the logical flow of the conversation.
 \begin{itemize}
     \item \textbf{Criterion 1: Speech Act Appropriateness:} Did the user use the correct type of utterance (e.g., request, refusal, apology) for the situation?
-    \item \textbf{Criterion 2: Discourse Relation Clarity:} Is the connection between the user's response and the previous turn logical and clear?
+    \item \textbf{Criterion 2: Discourse Relation Clarity:} Is the connection between the user’s response and the previous turn logical and clear?
 \end{itemize}
 
 \subsubsection{Category 2: Social \& Affective Nuance}
-This category measures the user's ability to navigate the social and emotional context, particularly relevant to Filipino values.
+This category measures the user’s ability to navigate the social and emotional context, particularly relevant to Filipino values.
 \begin{itemize}
     \item \textbf{Criterion 3: Formality Level:} Did the user adopt the correct register (casual vs. formal) given the power dynamics?
-    \item \textbf{Criterion 4: Informativeness:} Did the user provide the right amount of information (Grice's Maxim of Quantity) without over-explaining or being curt?
-    \item \textbf{Criterion 5: Emotional Awareness:} Did the tone of the response demonstrate empathy and awareness of the partner's emotional state?
+    \item \textbf{Criterion 4: Informativeness:} Did the user provide the right amount of information (Grice’s Maxim of Quantity) without over-explaining or being curt?
+    \item \textbf{Criterion 5: Emotional Awareness:} Did the tone of the response demonstrate empathy and awareness of the partner’s emotional state?
 \end{itemize}
 
 \subsubsection{Category 3: Communicative Effectiveness}
