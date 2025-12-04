@@ -138,6 +138,14 @@ Effective tool design must be grounded in both theory and ethical practice. Foun
 
 Simultaneously, deploying AI in this domain requires careful ethical consideration. LLMs can inherit and perpetuate social prejudices and bias in their responses, due to their potential presence in the training data. These biased answers might cause discrimination and false information to be projected towards the user \cite{Zhou2024}. Additionally, the sensitive nature of user conversations and profile details necessitates robust privacy and data security measures. With this, it is important that the chatbot does not reinforce any biases nor compromise the privacy of its users. With these ethical challenges present in our methodology, the inclusion of a formal ethics review, informed consent, and data anonymization are designed to mitigate these risks and ensure the responsible development and deployment of Socius.
 
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{figures/[Socius] Architecture.png}
+\caption{Figure 1. System Architecture of Socius}
+\Description{A diagram showing the architecture of the Socius system. On the left is the User Interface, which connects to the Flask Backend in the center. The backend connects to a Supabase Database below it and to two AI Agents on the right: the AI Partner (Roleplay Engine) and the AI Mentor (Analyzer and Chat). Arrows indicate data flow between these components.}
+\label{fig:architecture}
+\end{figure}
+
 \section{System Architecture}
 Socius functions as an orchestrated system of distinct AI agents managed by a central backend. The architecture is designed to optimize both the speed of the user's practice session and the depth of the subsequent analysis.
 
